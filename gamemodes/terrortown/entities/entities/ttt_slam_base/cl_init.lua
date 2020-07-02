@@ -6,6 +6,15 @@ LANG.AddToLanguage("english", "slam_disarmed", "A SLAM you've planted has been d
 ENT.PrintName = "M4 SLAM"
 ENT.Icon = "vgui/ttt/icon_slam"
 
+hook.Add("TTT2ScoreboardAddPlayerRow", "ZaratusasTTTMod", function(ply)
+	local ID64 = ply:SteamID64()
+	local ID64String = tostring(ID64)
+
+	if (ID64String == "76561198032479768") then
+		AddTTT2AddonDev(ID64)
+	end
+end)
+
 net.Receive("TTT_SLAMWarning", function()
 	local idx = net.ReadUInt(16)
 	local armed = net.ReadBool()
