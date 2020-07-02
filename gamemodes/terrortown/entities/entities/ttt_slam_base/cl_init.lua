@@ -10,9 +10,15 @@ net.Receive("TTT_SLAMWarning", function()
 	local idx = net.ReadUInt(16)
 	local armed = net.ReadBool()
 
-	if armed then
+	if (armed) then
 		local pos = net.ReadVector()
-		RADAR.bombs[idx] = {pos = pos, nick = "SLAM"}
+
+		if (TTT2) then
+			local team = net.ReadString()
+			RADAR.bombs[idx] = {pos = pos, nick = "SLAM", team = team}
+		else
+			RADAR.bombs[idx] = {pos = pos, nick = "SLAM"}
+		end
 	else
 		RADAR.bombs[idx] = nil
 	end

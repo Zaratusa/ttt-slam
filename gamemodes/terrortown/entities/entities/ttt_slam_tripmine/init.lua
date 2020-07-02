@@ -19,6 +19,7 @@ function ENT:ActivateSLAM()
 end
 
 local specDM = file.Exists("sh_spectator_deathmatch.lua", "LUA")
+
 function ENT:Think()
 	if (IsValid(self) and self:IsActive()) then
 		local tr = util.QuickTrace(self.LaserPos, self:GetUp() * 10000, self)
