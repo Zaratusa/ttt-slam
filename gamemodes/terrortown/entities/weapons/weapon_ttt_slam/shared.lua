@@ -157,7 +157,7 @@ function SWEP:AnimateAttack(animation1, animation2, sound, newSatchel)
 	end)
 	timer.Simple(holdup, function()
 		if (IsValid(self)) then
-			self:GetOwner():SendWeaponAnim(animation2)
+			self:SendWeaponAnim(animation2)
 		end
 	end)
 	timer.Simple(holdup + 0.1, function()
