@@ -17,7 +17,8 @@ hook.Add("TTTPrepareRound", "SLAMLaserClean", function()
 	Laser = {}
 end)
 
-local bSetting = GetConVar("ttt_slam_beamsize")
+local beamSize = GetConVar("ttt_slam_beamsize")
+
 function ENT:ActivateSLAM()
 	if (IsValid(self)) then
 		self.LaserPos = self:GetAttachment(self:LookupAttachment("beam_attach")).Pos
@@ -33,10 +34,10 @@ function ENT:ActivateSLAM()
 		hook.Add("PostDrawTranslucentRenderables", "SLAMBeam" .. index, function()
 			if (IsValid(self) and self:IsActive()) then
 				render.SetMaterial(self.LaserMaterial)
-				if (LocalPlayer():IsTraitor() or LocalPlayer():HasWeapon("weapon_ttt_defuser")) then
+				if (LocalPlayer():GetTraitor() or LocalPlayer():HasWeapon("weapon_ttt_defuser")) then
 					render.DrawBeam(self.LaserPos, self.LaserEndPos, BeamSettings[5].size, 1, 1, BeamSettings[5].color)
 				else
-					render.DrawBeam(self.LaserPos, self.LaserEndPos, BeamSettings[bSetting:GetInt()].size, 1, 1, BeamSettings[bSetting:GetInt()].color)
+					render.DrawBeam(self.LaserPos, self.LaserEndPos, BeamSettings[beamSize:GetInt()].size, 1, 1, BeamSettings[beamSize:GetInt()].color)
 				end
 			end
 		end)
