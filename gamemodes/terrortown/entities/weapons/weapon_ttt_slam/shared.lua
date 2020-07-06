@@ -2,8 +2,9 @@
 SWEP.Author = "Zaratusa"
 SWEP.Contact = "http://steamcommunity.com/profiles/76561198032479768"
 
-CreateConVar("ttt_slam_max", 5, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Maximum amount of SLAM's everyone can carry.")
-CreateConVar("ttt_slam_bought", 2, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Amount of SLAM's you receive, when you buy a SLAM.")
+local defaultClipSize = CreateConVar("ttt_slam_bought", 2, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Amount of SLAM's you receive, when you buy a SLAM.", 1)
+local clipSize = CreateConVar("ttt_slam_max", 5, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Maximum amount of SLAM's everyone can carry.", 1)
+local hasLimitedStock = CreateConVar("ttt_slam_limited_stock", 1, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Can you buy the M4 SLAM only once per round?", 0, 1)
 
 -- always derive from weapon_tttbase
 SWEP.Base = "weapon_tttbase"
@@ -12,8 +13,8 @@ SWEP.Base = "weapon_tttbase"
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.Delay = 1.25
 SWEP.Primary.Automatic = false
-SWEP.Primary.ClipSize = GetConVar("ttt_slam_max"):GetInt()
-SWEP.Primary.DefaultClip = GetConVar("ttt_slam_bought"):GetInt()
+SWEP.Primary.DefaultClip = defaultClipSize:GetInt()
+SWEP.Primary.ClipSize = clipSize:GetInt()
 SWEP.Secondary.Delay = 0.5
 SWEP.FiresUnderwater = false
 
@@ -41,7 +42,7 @@ SWEP.AmmoEnt = "none"
 SWEP.CanBuy = { ROLE_TRAITOR }
 
 -- If LimitedStock is true, you can only buy one per round.
-SWEP.LimitedStock = true
+SWEP.LimitedStock = hasLimitedStock:GetBool()
 
 -- If AllowDrop is false, players can't manually drop the gun with Q
 SWEP.AllowDrop = true

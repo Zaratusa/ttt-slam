@@ -7,7 +7,7 @@ include('shared.lua')
 -- 0: Explode when any player crosses the beam
 -- 1: Explode when any non traitor crosses the beam
 -- 2: Explode when any non team mate crosses the beam
-CreateConVar("ttt_slam_tripmine_explosion_mode", 0, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "When should the M4 SLAM in tripmine mode explode?", 0, 2)
+CreateConVar("ttt_slam_tripmine_explosion_mode", 0, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "When should the M4 SLAM explode in tripmine mode?", 0, 2)
 
 -- support for TTT Custom Roles
 local function IsInnocentRole(role)
