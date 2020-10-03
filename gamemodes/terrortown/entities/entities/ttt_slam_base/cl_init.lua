@@ -3,6 +3,9 @@ include('shared.lua')
 LANG.AddToLanguage("english", "slam_full", "You currently cannot carry SLAM's.")
 LANG.AddToLanguage("english", "slam_disarmed", "A SLAM you've planted has been disarmed.")
 
+LANG.AddToLanguage("Русский", "slam_full", "В настоящее время вы не можете носить с собой SLAM.")
+LANG.AddToLanguage("Русский", "slam_disarmed", "Установленный вами SLAM обезврежен.")
+
 ENT.PrintName = "M4 SLAM"
 ENT.Icon = "vgui/ttt/icon_slam"
 
